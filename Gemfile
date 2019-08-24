@@ -63,3 +63,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Bulma
 gem "bulma-rails", "~> 0.7.5"
+
+# Devise
+gem 'devise'
+
+# Jquery
+gem 'jquery-rails'

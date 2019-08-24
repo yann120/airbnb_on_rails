@@ -10,6 +10,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/navbar' %>
+    <div class="container is-fluid">
+      <% if notice %>
+        <div class="notification is-primary"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="notification is-danger"><%= alert %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
