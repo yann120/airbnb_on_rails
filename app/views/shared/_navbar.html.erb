@@ -25,6 +25,9 @@
         <% else %>
           <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
+            <figure class="image is-24x24">
+              <%= image_tag  avatar_url(current_user), class: "is-rounded" %>
+            </figure> &nbsp;
             <%= current_user.fullname %>
           </a>
 
