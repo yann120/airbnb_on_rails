@@ -69,3 +69,6 @@ gem 'devise'
 
 # Jquery
 gem 'jquery-rails'
+
+# Font Awesome
+gem "font-awesome-rails"
