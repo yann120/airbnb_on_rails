@@ -72,3 +72,6 @@ gem 'jquery-rails'
 
 # Font Awesome
 gem "font-awesome-rails"
+
+# dotenv
+gem 'dotenv-rails', groups: [:development, :test]
