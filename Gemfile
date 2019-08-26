@@ -67,6 +67,10 @@ gem "bulma-rails", "~> 0.7.5"
 # Devise
 gem 'devise'
 
+# Omniauth facebook
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 # Jquery
 gem 'jquery-rails'
 
@@ -75,3 +79,4 @@ gem "font-awesome-rails"
 
 # dotenv
 gem 'dotenv-rails', groups: [:development, :test]
+
