@@ -1,0 +1,28 @@
+<div class="columns is-8 margin-top">
+    <div class="column is-one-third has-text-centered">
+        <figure class="image container is-128x128">
+            <%= image_tag avatar_url(@user), class:"is-rounded is-centered" %>
+        </figure>
+        <br>
+        <div class="panel">
+            <div class="panel-heading">
+                Verification
+            </div>
+            <div class="panel-block">
+                Email Adress
+            </div>
+            <div class="panel-block">
+                Phone Number
+            </div>
+        </div>
+    </div>
+    <div class="column is-1-desktop"></div>
+    <div class="column is-two-thirds">
+        <h2 class="is-size-2">Hi, I'm <%= @user.fullname%> </h2>
+        <p>Joined in <%= @user.created_at.year %> · <%= link_to  "Edit profile", edit_user_registration_path if @user == current_user %> </p>
+        <div class="description">
+            <p class="quote is-family-monospace">“</p>
+            <%= @user.description%>
+        </div>
+    </div>
+</div>

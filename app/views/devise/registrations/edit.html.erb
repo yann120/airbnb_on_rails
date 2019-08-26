@@ -1,13 +1,20 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <section class="hero is-primary is-fullheight">
+  <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container">
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+        <div class="column is-3-desktop is-hidden-touch has-text-centered">
+          <%= link_to  "Edit profile", edit_user_registration_path, class:"has-text-black has-text-weight-bold" %>
+          <br><br>
+          <%= link_to "View profile", user_path(@user), class:"button has-background-primary has-text-white is-fullwidth" %>
+
+        </div>
+        <div class="column is-3-desktop is-hidden-touch"></div>
+        <div class="column is-11-tablet is-6-desktop is-4-widescreen is-12-mobile">
           <div class="box">
           <h2 class="has-text-centered is-size-2">
-            Edit <%= resource_name.to_s.humanize %>
+            Your profile
           </h2>
             <div class="field">
               <%= f.label :email, class: "label" %>              
@@ -30,6 +37,27 @@
                 </span>
               </div>
             </div>
+
+            <div class="field">
+              <%= f.label :phone_number, class: "label" %>              
+              <div class="control has-icons-left">
+                <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "+33123456789", class: "input" %>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-phone"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= f.label :description, class: "label" %>              
+              <div class="control has-icons-left">
+                <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, autocomplete: "description", placeholder: "I'm 25 and very friendly", class: "input" %>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-comment"></i>
+                </span>
+              </div>
+            </div>
+
             <div class="field">
               <%= f.label :password, 'New password', class: "label" %> <i>(leave blank if you don't want to change it)</i
                   <% if @minimum_password_length %>
@@ -42,7 +70,7 @@
                 </span>
               </div>
             </div>
-            
+
             <div class="field">
               <%= f.label :password, 'Password confirmation', class: "label" %>
               <div class="control has-icons-left">
@@ -52,15 +80,7 @@
                 </span>
               </div>
             </div>
-            <div class="field">
-              <%= f.label :password, 'Current password', class: "label" %>
-              <div class="control has-icons-left">
-                <%= f.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "********", class: "input" %>                
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
+           
             <div class="field has-text-centered">
               <%= f.submit "Update", class: "button is-success" %>
             </div>

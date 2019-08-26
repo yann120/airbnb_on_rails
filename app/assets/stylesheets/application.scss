@@ -13,8 +13,22 @@
  *= require_tree .
  *= require_self
  */
-$primary: #fd5c63;
+$primary: #008489;
+
+a {
+    color: #008489 !important;
+}
 
 @import "bulma";
 @import "font-awesome";
 
+.margin-top {
+    margin-top: 30px;
+}
+
+.quote {
+    height: 60px !important;
+    color: #EBEBEB !important;
+    font-size: 64px !important;
+    font-weight: 700 !important;
+}
