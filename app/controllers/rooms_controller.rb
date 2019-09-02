@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, except: [:index, :new, :create]
+  before_action :set_room, except: [:index, :new, :create, :delete_image_attachment]
   before_action :authenticate_user!, except: [:show]
   def index
     @rooms = current_user.rooms
@@ -43,6 +43,16 @@ class RoomsController < ApplicationController
   def photo_upload
   end
 
+  def delete_image_attachment
+    image_to_delete = ActiveStorage::Attachment.find(params[:id])
+    if image_to_delete.purge
+      flash[:notice] = "Image successfully deleted"
+    else
+      flash[:notice] = "Something didn't work..."
+    end
+    redirect_back(fallback_location: request.referer)
+end
+
   def amenities
   end
 
@@ -55,6 +65,6 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
+      params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, :room_pictures)
     end
 end

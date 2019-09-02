@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
 <div class="columns">
     <div class="column is-one-quarter">
         <%= render  "room_menu" %>
@@ -9,14 +10,58 @@
             </div>
             <div class="panel-block">
                 <div class="container">
-                    <div class="columns is-centered">
-                        <div class="column is-3">
-                            photo upload
+                    <%= form_for @room do |f| %>
+                        Upload new picture
+                        <%= f.file_field :room_pictures, accept:'image/*', required: true %>
+                        <%= f.submit "Upload picture" %>
+                    <% end %>
+
+                    <!-- Start Hero Carousel -->
+                    <section class="hero is-medium has-carousel">
+                        <div id="carousel-demo" class="hero-carousel">
+                            <% @room.room_pictures.each_with_index do |picture, index| %>
+                                <div class=<%= "has-text-centered item-" + (index + 1).to_s %> >
+                                        <%= link_to 'Delete picture', delete_image_attachment_room_url(picture.id),
+                                            method: :delete, class: "button is-danger is-outlined has-text-danger" %>
+                                    <%= image_tag url_for(picture) %>
+                                </div>
+                            <% end %>
                         </div>
+                        <div class="hero-head"></div>
+                        <div class="hero-body"></div>
+                        <div class="hero-foot"></div>
+                    </section>
+                    <!-- End Hero Carousel -->
                     </div>
-                </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+    <script>
+    // Initialize all div with carousel class
+    bulmaCarousel.attach('#carousel-demo', {
+				slidesToScroll: 1,
+				slidesToShow: 1
+			})
+    var options
+    var carousels = bulmaCarousel.attach('.carousel', options);
+
+    // Loop on each carousel initialized
+    for(var i = 0; i < carousels.length; i++) {
+        // Add listener to  event
+        carousels[i].on('before:show', state => {
+            console.log(state);
+        });
+    }
+
+    // Access to bulmaCarousel instance of an element
+    var element = document.querySelector('#my-element');
+    if (element && element.bulmaCarousel) {
+        // bulmaCarousel instance is available as element.bulmaCarousel
+        element.bulmaCarousel.on('before-show', function(state) {
+            console.log(state);
+        });
+    }
+</script>

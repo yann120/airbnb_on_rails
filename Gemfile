@@ -80,3 +80,8 @@ gem "font-awesome-rails"
 # dotenv
 gem 'dotenv-rails', groups: [:development, :test]
 
+# Azure cloud storage
+gem "azure-storage-blob", require: false
+
+# Validations of active storage
+gem 'activestorage-validator'

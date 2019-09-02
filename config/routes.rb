@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'photo_upload'
       get 'amenities'
       get 'location'
+      delete :delete_image_attachment
     end
   end
 end
