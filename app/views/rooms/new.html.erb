@@ -1,0 +1,61 @@
+<div class="panel">
+    <div class="panel-heading has-background-primary has-text-white has-text-weight-bold">
+        Create a new place
+    </div>
+    <div class="panel-block">
+        <div class="container">
+            <%= form_for @room do |f| %>
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <div class="field has-text-centered">
+                        <%= f.label :home_type, class: "label" %>
+                        <div class="control has-text-centered">
+                            <%= f.select    :home_type, [["Apartment", "Apartment"], ["House", "House"], ["Bed & Breakfast", "Bed & Breakfast"]],
+                                             {prompt: "Select..."}, {class: "select", id: "home_type"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third has-text-centered">
+                    <div class="field has-text-centered">
+                        <%= f.label :room_type, class: "label" %>
+                        <div class="control has-text-centered">
+                            <%= f.select    :room_type, [["Entire", "Entire"], ["Private", "Private"], ["Shared", "Shared"]],
+                                             {prompt: "Select..."}, {class: "select", id: "room_type"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third has-text-centered">
+                    <div class="field has-text-centered">
+                        <%= f.label :accommodate, class: "label" %>
+                        <div class="control has-text-centered">
+                            <%= f.select    :accommodate, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],
+                                             {prompt: "Select..."}, {class: "select", id: "accommodate"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third has-text-centered">
+                    <div class="field has-text-centered">
+                        <%= f.label :bed_room, class: "label" %>
+                        <div class="control has-text-centered">
+                            <%= f.select    :bed_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],
+                                             {prompt: "Select..."}, {class: "select", id: "bed_room"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third has-text-centered">
+                    <div class="field has-text-centered">
+                        <%= f.label :bath_room, class: "label" %>
+                        <div class="control has-text-centered">
+                            <%= f.select    :bath_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],
+                                             {prompt: "Select..."}, {class: "select", id: "bath_room"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third has-text-centered">
+                    <%= f.submit "Create Room", class: "button is-success" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

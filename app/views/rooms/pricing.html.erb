@@ -1,0 +1,35 @@
+<div class="columns">
+    <div class="column is-one-quarter">
+        <%= render  "room_menu" %>
+    </div>
+    <div class="column is-three-quarters">
+        <div class="panel">
+            <div class="panel-heading has-background-primary has-text-white has-text-weight-bold">
+                Pricing
+            </div>
+            <div class="panel-block">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-2">
+                            <%= form_for @room do |f| %>
+                                <div class="field has-text-centered">
+                                    <%= f.label :price, class: "label" %>
+                                    <div class="control has-icons-right has-text-centered">
+                                        <%= f.number_field :price, placeholder: "100$", class: "input is-primary" %>
+                                        <span class="icon is-small is-right">
+                                            <i class="fa fa-euro"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="has-text-centered">
+                                    <%= f.submit "Save", class: "button is-success" %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

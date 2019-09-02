@@ -1,0 +1,49 @@
+<div class="columns">
+    <div class="column is-one-quarter">
+        <%= render  "room_menu" %>
+    </div>
+    <div class="column is-three-quarters">
+        <div class="panel">
+            <div class="panel-heading has-background-primary has-text-white has-text-weight-bold">
+                Amenities
+            </div>
+            <div class="panel-block">
+                <div class="container">
+                    <div class="columns is-centered is-multiline">
+                        <div class="column is-4 has-text-centered">
+                            <%= form_for @room do |f| %>
+                                <div class="checkbox">
+                                    <%= f.check_box :is_tv %> TV
+                                </div>
+                        </div>
+                        <div class="column is-4 has-text-centered">
+                            <div class="checkbox">
+                                <%= f.check_box :is_kitchen %> Kitchen
+                            </div>
+                        </div>
+                        <div class="column is-4 has-text-centered">
+                            <div class="checkbox">
+                                <%= f.check_box :is_internet %> Internet
+                            </div>
+                        </div>
+                        <div class="column is-4 has-text-centered">
+                            <div class="checkbox">
+                                <%= f.check_box :is_heating %> Heating
+                            </div>
+                        </div>
+                        <div class="column is-4 has-text-centered">
+                            <div class="checkbox">
+                                <%= f.check_box :is_air %> Air conditionning
+                            </div>
+                        </div>
+                        <div class="column is-4 has-text-centered">
+                            <%= f.submit "Save", class: "button is-success" %>
+                        </div>
+                            <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
