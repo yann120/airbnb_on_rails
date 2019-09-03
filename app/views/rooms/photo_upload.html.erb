@@ -32,7 +32,7 @@
                             <div id="carousel-demo" class="hero-carousel">
                                 <% @room.room_pictures.each_with_index do |picture, index| %>
                                     <div class=<%= "has-text-centered item-" + (index + 1).to_s %> >
-                                        <%= link_to delete_image_attachment_room_url(picture.id), class: "button is-danger is-outlined has-text-danger" do %>
+                                        <%= link_to delete_image_attachment_room_url(picture.id), method: :delete, class: "button is-danger is-outlined has-text-danger" do %>
                                             <span class='icon is-small'><i class='fa fa-trash'></i></span> &nbsp;Delete picture
                                         <% end %>
                                         <%= image_tag url_for(picture) %>

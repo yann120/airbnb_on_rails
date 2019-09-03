@@ -1,2 +1,36 @@
-<h1>Room#index</h1>
-<p>Find me in app/views/room/index.html.erb</p>
+<div class="columns">
+    <div class="column is-one-quarter">
+        <aside class="menu">
+        <ul class="menu-list">
+            <li> <%= link_to "Your Listings", root_path %> </li>
+            <li> <%= link_to "Your Reservations", root_path %> </li>
+        </ul>
+        </aside>
+    </div>
+    <div class="column is-three-quarters">
+        <div class="panel">
+            <div class="panel-heading has-background-primary has-text-white has-text-weight-bold">
+                Listings
+            </div>
+            <div class="panel-block">
+                <div class="container">
+                    <% @rooms.each do |room| %>
+                        <div class="columns">
+                            <div class="column is-3">
+                            <figure class="image is-96x96">
+                                <%= image_tag url_for(room.room_pictures.first), onerror: "this.src='http://contrapoderweb.com/wp-content/uploads/2014/10/default-img.gif'" %>
+                            </figure>
+                            </div>
+                            <div class="column is-6">
+                                <p class="is-size-5"><%= room.listing_name %></p>
+                            </div>
+                            <div class="column is-3">
+                                <%= link_to "Update", listing_room_path(room), class: "button is-primary has-text-white" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
