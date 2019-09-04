@@ -85,3 +85,6 @@ gem "azure-storage-blob", require: false
 
 # Validations of active storage
 gem 'activestorage-validator'
+
+# Geocoder
+gem 'geocoder'

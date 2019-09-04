@@ -84,6 +84,57 @@
                 </ul>
                 </div>
             </div>
+
+            <div>
+                <div id="map" style="width: 100%; height: 400px"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHIKeUdcN25O94GvkSr4ZbzB6kWdo31Ys"></script>
+                <script>
+                    function initialize() {
+                        var location = { lat: <%= @room.latitude %>, lng: <%= @room.longitude %> }
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: location,
+                            zoom: 14
+                        });
+                        var marker = new google.maps.Marker({
+                            position: location,
+                            map: map
+                        });
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: '<figure class="image is-128x128"> <%= image_tag url_for(@room.room_pictures.first) %> </figure>'
+                        });
+
+                        infoWindow.open(map, marker);
+
+                        google.maps.event.addDomListener(window, 'load', initialize);
+                    }
+                    initialize()
+                </script>
+            </div>
+
+            <hr>
+            <h5 class="is-size-5 has-text-weight-semibold">Near by rooms</h5> <br>
+            <div class="columns is-multiline">
+                <% for room in @room.nearbys(10) %>
+                    <div class="column is-3">
+                        <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <%= image_tag  url_for(room.room_pictures.first), class: "is-rounded" %>                        
+                            </figure>
+                        </div>
+                        <div class="card-content">
+
+
+                            <div class="content">
+                                <%= link_to room.listing_name, room, class: "is-size-5 has-text-weight-semibold" %>
+                                <p><%= room.distance.round(2) %> km away</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
         </div>
     </div>
 </div>
