@@ -1,0 +1,87 @@
+<div class="sticky">
+<%= form_for([@room, @room.reservations.new]) do |f| %>
+<div class="card">
+            <div class="card-content">
+                <p><span class="is-size-5 has-text-weight-semibold"><%= @room.price %> €</span> per night</p>
+                <hr>
+                <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Dates</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                    
+                    <div class="control is-expanded">
+                    <%= f.text_field :start_date, placeholder: "From", class: "input" %>                        
+                    </div>
+                    </div>
+
+                    <div class="field">
+                    <p class="control is-expanded">
+                        <%= f.text_field :end_date, placeholder: "To", class: "input" %>
+                    </p>
+                    </div>
+                </div>
+                </div>
+                <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Guests</label>
+                </div>
+                <div class="field-body">
+                    <div class="field ">
+                    <p class="control is-expanded has-icons-right">
+                        <%= f.text_field :guests, placeholder: "1 Guest", class: "input" %>
+                        <span class="icon is-small is-right">
+                            <i class="fa fa-caret-down"></i>
+                        </span>
+                    </p>
+                    </div>
+                </div>
+                </div> 
+                <div class="columns is-mobile is-marginless">
+                    <div class="column is-half has-text-left">
+                        25€ x 10 nights
+                    </div>
+                    <div class="column is-half has-text-right">
+                        250€
+                    </div>
+                </div>
+                <hr class="is-marginless">
+                <div class="columns is-mobile is-marginless">
+                    <div class="column is-half has-text-left">
+                        Cleaning fees
+                    </div>
+                    <div class="column is-half has-text-right">
+                        5€
+                    </div>
+                </div>
+                <hr class="is-marginless">
+                <div class="columns is-mobile is-marginless">
+                    <div class="column is-half has-text-left has-text-weight-semibolt">
+                        Total
+                    </div>
+                    <div class="column is-half has-text-right">
+                        255€
+                    </div>
+                </div>
+                <%= f.submit "Book Now", class: "button is-medium is-fullwidth is-link has-text-white" %>
+            </div>
+            <%
+=begin%>
+ <footer class="card-footer">
+                <p class="card-footer-item">
+                <span>
+                    View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                </span>
+                </p>
+                <p class="card-footer-item">
+                <span>
+                    Share on <a href="#">Facebook</a>
+                </span>
+                </p>
+            </footer> 
+<%
+=end%>
+</div>
+<% end %>
+</div>

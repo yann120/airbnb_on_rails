@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
 <div class="container is-widescreen">
     <!-- Start Hero Carousel -->
-    <section class="hero is-medium has-carousel">
+    <section class="hero is-large has-carousel">
         <div id="carousel-demo" class="hero-carousel">
             <% @room.room_pictures.each_with_index do |picture, index| %>
                 <div class=<%= "has-text-centered item-" + (index + 1).to_s %> >
@@ -134,7 +134,9 @@
                     </div>
                 <% end %>
             </div>
-
+        </div>
+        <div class="column is-4">
+            <%= render  "reservation_form" %>
         </div>
     </div>
 </div>

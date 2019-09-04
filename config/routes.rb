@@ -12,5 +12,6 @@ Rails.application.routes.draw do
       get 'location'
       delete :delete_image_attachment
     end
+    resources :reservations, only: [:create]
   end
 end
