@@ -24,9 +24,11 @@
                 </div>
                 <div class="column is-3">
                     <figure class="image is-128x128 container">
+                    <%= link_to @room.user do %>
                         <%= image_tag  avatar_url(@room.user), class: "is-rounded" %>
+                    <% end %>
                     </figure> <br>
-                    <p class="has-text-centered has-text-weight-semibold"><%= @room.user.fullname %></p>
+                    <div class="has-text-centered"><%= link_to  @room.user.fullname, @room.user, class:" has-text-weight-semibold" %></div>
                 </div>
             </div>
 
