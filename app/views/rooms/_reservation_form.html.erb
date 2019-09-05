@@ -100,13 +100,17 @@
     }
 
     function changePrices() {
-        var start_date = $("#reservation_start_date").val();
-        var end_date = $("#reservation_end_date").val();
+        console.log("started")
+        var start_date = changeDateFormat($("#reservation_start_date").val());
+        var end_date = changeDateFormat($("#reservation_end_date").val());
+        // console.log(Date.parse(changeDateFormat(start_date)));
+        // console.log(Date.parse(changeDateFormat(end_date)));
+
         if (!isNaN(Date.parse(start_date)) && !isNaN(Date.parse(end_date)))
         {
-            
-            start_date = new Date(changeDateFormat(start_date));
-            end_date = new Date(changeDateFormat(end_date));
+            console.log("ici");            
+            start_date = new Date(start_date);
+            end_date = new Date(end_date);
             var nights = daysBetween(start_date, end_date);
             if (nights < 1) {
                 nights = 1;
@@ -119,4 +123,30 @@
             $('#total_price').text(String(Math.round((nights * price)*1.1)))
         }
     };
+
+    $(function() {
+        $.datepicker.setDefaults({
+                changeMonth: true,
+                dateFormat: 'dd-mm-yy'});
+            $('#reservation_start_date').datepicker({
+                minDate: '+0',
+                onSelect: function(dateStr) {
+                    changePrices();
+                    var min = $(this).datepicker('getDate') || new Date(); // Selected date or today if none
+                    var max = new Date(min.getTime());
+                    max.setMonth(max.getMonth() + 1); // Add one month
+                    $('#reservation_end_date').datepicker('option', {minDate: min, maxDate: max});
+                }
+            });
+            $('#reservation_end_date').datepicker({
+                minDate: '+0',
+                maxDate: '+1m',
+                onSelect: function(dateStr) {
+                    changePrices();
+                    var max = $(this).datepicker('getDate'); // Selected date or null if none
+                    $('#reservation_start_date').datepicker('option', {maxDate: max});
+                }
+            });
+
+    })
 </script>

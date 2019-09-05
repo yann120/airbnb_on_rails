@@ -73,6 +73,7 @@ gem 'omniauth-facebook'
 
 # Jquery
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Font Awesome
 gem "font-awesome-rails"
