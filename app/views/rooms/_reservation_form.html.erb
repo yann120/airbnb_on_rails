@@ -12,13 +12,13 @@
                     <div class="field">
                     
                     <div class="control is-expanded">
-                    <%= f.text_field :start_date, placeholder: "From", class: "input", onChange: "changePrices()", required: true %>                        
+                    <%= f.text_field :start_date, placeholder: "From", class: "input", onChange: "changePrices()", required: true, autocomplete: 'off' %>                        
                     </div>
                     </div>
 
                     <div class="field">
                     <p class="control is-expanded">
-                        <%= f.text_field :end_date, placeholder: "To", class: "input", onChange: "changePrices()", required: true %>
+                        <%= f.text_field :end_date, placeholder: "To", class: "input", onChange: "changePrices()", required: true, disabled: true, autocomplete: 'off' %>
                     </p>
                     </div>
                 </div>
@@ -123,24 +123,58 @@
             $('#total_price').text(String(Math.round((nights * price)*1.1)))
         }
     };
+     var unavailableDates = [];
+     var startDateReservations = [];
+    function checkDate(date) {
+        dny = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        return [$.inArray(dny, unavailableDates) == -1];
+    }
+
+    function maximumDate(date) {
+        for(let i = 0; i < startDateReservations.length; i++) {
+            if (date < startDateReservations[i]) {
+                return startDateReservations[i]
+            }
+        }
+        return date.setMonth( date.getMonth() + 3 );
+    }
 
     $(function() {
+       
+        $.ajax({
+            url: '<%= preload_room_path(@room) %>',
+            dataType: 'json',
+            success: function(data) {
+                $.each(data, function(arrID, arrValue) {
+                    for(var d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)) {
+                       unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+                    }
+                    startDateReservations.push(new Date(arrValue.start_date));
+                })
+                startDateReservations.sort(function(a,b) {
+                    return a - b;
+                });
+            }
+        })
         $.datepicker.setDefaults({
                 changeMonth: true,
                 dateFormat: 'dd-mm-yy'});
             $('#reservation_start_date').datepicker({
                 minDate: '+0',
+                beforeShowDay: checkDate,
                 onSelect: function(dateStr) {
                     changePrices();
                     var min = $(this).datepicker('getDate') || new Date(); // Selected date or today if none
-                    var max = new Date(min.getTime());
-                    max.setMonth(max.getMonth() + 1); // Add one month
+                    var max = maximumDate(min);
+
                     $('#reservation_end_date').datepicker('option', {minDate: min, maxDate: max});
+                    $('#reservation_end_date').attr("disabled", false);
                 }
             });
             $('#reservation_end_date').datepicker({
                 minDate: '+0',
                 maxDate: '+1m',
+                beforeShowDay: checkDate,
                 onSelect: function(dateStr) {
                     changePrices();
                     var max = $(this).datepicker('getDate'); // Selected date or null if none
