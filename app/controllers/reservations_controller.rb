@@ -11,8 +11,10 @@ class ReservationsController < ApplicationController
 
         if current_user == room.user
             flash[:alert] = "You can not book your own room."
-        elsif !is_valid_date(reservation_params[:start_date]) || !is_valid_date(reservation_params[:end_date])
+        elsif !is_valid_date(reservation_params[:start_date]) && !is_valid_date(reservation_params[:end_date])
             flash[:alert] = "Unvalid date. Please choose correct dates"
+        elsif Date.parse(reservation_params[:start_date]) > Date.parse(reservation_params[:end_date])
+            flash[:alert] = "You can't leave the room before you enter in! 🤔"
         else
             start_date = Date.parse(reservation_params[:start_date])
             end_date = Date.parse(reservation_params[:end_date])
