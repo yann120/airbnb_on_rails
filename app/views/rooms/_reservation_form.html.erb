@@ -12,13 +12,13 @@
                     <div class="field">
                     
                     <div class="control is-expanded">
-                    <%= f.text_field :start_date, placeholder: "From", class: "input" %>                        
+                    <%= f.text_field :start_date, placeholder: "From", class: "input", onChange: "changePrices()", required: true %>                        
                     </div>
                     </div>
 
                     <div class="field">
                     <p class="control is-expanded">
-                        <%= f.text_field :end_date, placeholder: "To", class: "input" %>
+                        <%= f.text_field :end_date, placeholder: "To", class: "input", onChange: "changePrices()", required: true %>
                     </p>
                     </div>
                 </div>
@@ -28,22 +28,19 @@
                     <label class="label">Guests</label>
                 </div>
                 <div class="field-body">
-                    <div class="field ">
-                    <p class="control is-expanded has-icons-right">
-                        <%= f.text_field :guests, placeholder: "1 Guest", class: "input" %>
-                        <span class="icon is-small is-right">
-                            <i class="fa fa-caret-down"></i>
-                        </span>
+                    <div class="field">
+                    <p class="select">
+                    <%= f.select :guests, (1..@room.accommodate).map {|i| [pluralize(i, "guest"),i] }%> 
                     </p>
                     </div>
                 </div>
                 </div> 
                 <div class="columns is-mobile is-marginless">
                     <div class="column is-half has-text-left">
-                        25€ x 10 nights
+                        <span id="price"><%= @room.price %></span>€ x <span id="nights">1</span> nights
                     </div>
                     <div class="column is-half has-text-right">
-                        250€
+                        <span id="total_room_price"><%= @room.price %></span>€
                     </div>
                 </div>
                 <hr class="is-marginless">
@@ -52,7 +49,7 @@
                         Cleaning fees
                     </div>
                     <div class="column is-half has-text-right">
-                        5€
+                        <span id="cleaning_fees"><%= (@room.price / 10).round %></span>€
                     </div>
                 </div>
                 <hr class="is-marginless">
@@ -61,7 +58,7 @@
                         Total
                     </div>
                     <div class="column is-half has-text-right">
-                        255€
+                        <span id="total_price"><%= (@room.price * 1.1).round %></span>€
                     </div>
                 </div>
                 <%= f.submit "Book Now", class: "button is-medium is-fullwidth is-link has-text-white" %>
@@ -85,3 +82,41 @@
 </div>
 <% end %>
 </div>
+
+<script>
+    function isEmpty(str) {
+        return (!str || 0 === str.length);
+    }
+
+    function daysBetween(StartDate, EndDate) {
+        const oneDay = 1000 * 60 * 60 * 24;
+        const start = Date.UTC(EndDate.getFullYear(), EndDate.getMonth(), EndDate.getDate());
+        const end = Date.UTC(StartDate.getFullYear(), StartDate.getMonth(), StartDate.getDate());
+        return (start - end) / oneDay;
+    }
+
+    function changeDateFormat(datestr) {
+        return (datestr.substr(3, 2)+"-"+datestr.substr(0, 2)+"-"+datestr.substr(6, 4));
+    }
+
+    function changePrices() {
+        var start_date = $("#reservation_start_date").val();
+        var end_date = $("#reservation_end_date").val();
+        if (!isNaN(Date.parse(start_date)) && !isNaN(Date.parse(end_date)))
+        {
+            
+            start_date = new Date(changeDateFormat(start_date));
+            end_date = new Date(changeDateFormat(end_date));
+            var nights = daysBetween(start_date, end_date);
+            if (nights < 1) {
+                nights = 1;
+            }
+
+            const price = parseInt($('#price').text())
+            $('#nights').text(String(nights));
+            $('#total_room_price').text(String(nights * price));
+            $('#cleaning_fees').text(String(Math.round((nights * price)*0.1)));
+            $('#total_price').text(String(Math.round((nights * price)*1.1)))
+        }
+    };
+</script>
