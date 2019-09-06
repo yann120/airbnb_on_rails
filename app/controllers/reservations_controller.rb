@@ -15,6 +15,8 @@ class ReservationsController < ApplicationController
             flash[:alert] = "Unvalid date. Please choose correct dates"
         elsif Date.parse(reservation_params[:start_date]) > Date.parse(reservation_params[:end_date])
             flash[:alert] = "You can't leave the room before you enter in! 🤔"
+        elsif is_conflict(Date.parse(reservation_params[:start_date]), Date.parse(reservation_params[:end_date]), room)
+            flash[:alert] = "The room is already booked by someone else for this dates!"
         else
             start_date = Date.parse(reservation_params[:start_date])
             end_date = Date.parse(reservation_params[:end_date])
@@ -32,6 +34,10 @@ class ReservationsController < ApplicationController
     end
 
     private
+        def is_conflict(start_date, end_date, room)
+            check = room.reservations.where("? < start_date AND end_date < ?", start_date, end_date)
+            check.size > 0
+        end
         def reservation_params
             params.require(:reservation).permit(:start_date, :end_date, :guests)
         end

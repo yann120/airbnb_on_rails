@@ -136,7 +136,12 @@
                 return startDateReservations[i]
             }
         }
-        return date.setMonth( date.getMonth() + 3 );
+        var newDate = new Date();
+        // newDate.setYear(date.getYear())
+        newDate.setMonth(date.getMonth() + 3 )
+        newDate.setDate(date.getDate())
+        console.log(newDate)
+        return newDate
     }
 
     $(function() {
@@ -164,7 +169,8 @@
                 beforeShowDay: checkDate,
                 onSelect: function(dateStr) {
                     changePrices();
-                    var min = $(this).datepicker('getDate') || new Date(); // Selected date or today if none
+                    var date = $(this).datepicker('getDate');
+                    var min = $(this).datepicker('getDate') || new Date(); // Selected date or today if none               
                     var max = maximumDate(min);
 
                     $('#reservation_end_date').datepicker('option', {minDate: min, maxDate: max});
