@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     end
     resources :reservations, only: [:create]
   end
+  get '/trips' => 'reservations#trips'
+  get '/reservations' => 'reservations#current_reservations'
 end

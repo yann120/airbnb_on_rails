@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
     def create
         room = Room.find(params[:room_id])
 
-        if current_user == room.user
+    if current_user == room.user
             flash[:alert] = "You can not book your own room."
         elsif !is_valid_date(reservation_params[:start_date]) && !is_valid_date(reservation_params[:end_date])
             flash[:alert] = "Unvalid date. Please choose correct dates"
@@ -31,6 +31,20 @@ class ReservationsController < ApplicationController
             flash[:notice] = "Booked Successfully"
         end
         redirect_to room
+    end
+
+    def trips
+        @trips = current_user.reservations.order(start_date: :asc)
+    end
+
+    def current_reservations
+        @reservations = []
+        current_user.rooms.each do |room|
+            room.reservations.each do |reservation|
+                @reservations << reservation
+            end
+        end
+        @reservations = @reservations.sort_by {|reservation| reservation[:start_date]}
     end
 
     private
