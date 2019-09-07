@@ -30,6 +30,12 @@ class RoomsController < ApplicationController
     end
     redirect_back(fallback_location: request.referer)
   end
+
+  def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+    redirect_to rooms_path
+  end
   
   def preload
     today = Date.today
@@ -58,7 +64,7 @@ class RoomsController < ApplicationController
       flash[:notice] = "Something didn't work..."
     end
     redirect_back(fallback_location: request.referer)
-end
+  end
 
   def amenities
   end

@@ -21,4 +21,9 @@
       <%= f.submit "Publish", class: "button is-primary has-text-white is-fullwidth" %>
     <% end %>
   <% end %>
+  <br>
+  <%= link_to 'Delete listing', room_path(@room),
+              method: :delete,
+              data: { confirm: 'Are you sure to delete this listing ?' },
+              class: "button is-danger has-text-white is-fullwidth" %>
 </aside>

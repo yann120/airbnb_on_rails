@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :delete_all
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -11,5 +11,5 @@ class Room < ApplicationRecord
   validates :bed_room, presence: true
   validates :bath_room, presence: true
   validates :room_pictures, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
-  has_many_attached :room_pictures
+  has_many_attached :room_pictures, dependent: :delete_all
 end
