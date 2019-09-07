@@ -5,24 +5,44 @@
         </figure>
         <br>
         <div class="panel">
-            <div class="panel-heading">
+            <div class="panel-heading has-background-primary has-text-white has-text-weight-bold">
                 Verification
             </div>
-            <div class="panel-block">
-                Email Adress
+            <div class="panel-block control has-icons-right">
+                <p>Email Adress </p>
+                <span class='icon is-right has-text-success'><i class='fa fa-check'></i></span>
             </div>
-            <div class="panel-block">
-                Phone Number
+            <div class="panel-block control has-icons-right">
+                <p>Phone Number</p>
+                <span class='icon is-right has-text-success'><i class='fa fa-check'></i></span>
             </div>
         </div>
     </div>
-    <div class="column is-1-desktop"></div>
     <div class="column is-two-thirds">
         <h2 class="is-size-2">Hi, I'm <%= @user.fullname%> </h2>
         <p>Joined in <%= @user.created_at.year %> · <%= link_to  "Edit profile", edit_user_registration_path if @user == current_user %> </p>
         <div class="description">
             <p class="quote is-family-monospace">“</p>
             <%= @user.description%>
+        </div>
+        <hr><br>
+        <div class="columns is-multiline">
+            <% @rooms.each do |room| %>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <%= image_tag  url_for(room.room_pictures.first) %>                        
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <%= link_to room.listing_name, room, class: "is-size-5 has-text-weight-semibold" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>
