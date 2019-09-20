@@ -21,6 +21,7 @@
                 <div class="column is-9">
                     <h2 class="is-size-2"><%= @room.listing_name %></h2>
                     <p><%= @room.address %></p>
+                        <%= review_stars(@reviews.average(:score).round) + "(" + @reviews.average(:score).to_s + ")" unless @reviews.blank?  %>
                 </div>
                 <div class="column is-3">
                     <figure class="image is-128x128 container">

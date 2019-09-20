@@ -48,7 +48,7 @@
 		<div>
 			<p class="has-text-weight-semibold is-size-3"><%= pluralize(@reviews.count, "comment")  %></p>
 			<% @reviews.each do |review| %>
-				<%= review.from_user.fullname %>: <%= review.comment %><br>
+				<span class="has-text-weight-bold"><%= review.from_user.fullname %>:</span> <%= review.comment %><br>
 				<%= review_stars(review.score) %>
 				<br>
 			<% end %>

@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-
+    @reviews = Review.joins(:reservation).where(reservations: {room_id: @room.id})
   end
 
   def update
