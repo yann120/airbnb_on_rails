@@ -21,7 +21,8 @@
     <div class="column is-two-thirds">
         <h2 class="is-size-2">Hi, I'm <%= @user.fullname%> </h2>
         <p>Joined in <%= @user.created_at.year %> · <%= link_to  "Edit profile", edit_user_registration_path if @user == current_user %> </p>
-		<div class="description">
+        <%= review_stars(@reviews.average(:score).round) + "(" + @reviews.average(:score).to_s + ")"  %>
+        <div class="description">
             <p class="quote is-family-monospace">“</p>
             <%= @user.description%>
         </div>
@@ -47,7 +48,7 @@
 		<div>
 			<p class="has-text-weight-semibold is-size-3"><%= pluralize(@reviews.count, "comment")  %></p>
 			<% @reviews.each do |review| %>
-				<%= review.id %>: <%= review.comment %><br>
+				<%= review.from_user.fullname %>: <%= review.comment %><br>
 				<%= review_stars(review.score) %>
 				<br>
 			<% end %>
