@@ -16,7 +16,7 @@
             <div class="panel-block">
                 <div class="container">
                     <% @reservations.each do |reservation| %>
-                        <div class="columns is-vcentered is-mobile">
+                        <div class="columns is-vcentered is-centered is-mobile is-multiline">
                             <div class="column is-2 is-hidden-mobile">
                                 <%= image_tag url_for(reservation.room.room_pictures.first), onerror: "this.src='http://contrapoderweb.com/wp-content/uploads/2014/10/default-img.gif'" %>
                             </div>
@@ -32,10 +32,14 @@
                             </div>
                             <div class="column is-2">
                                 <figure class="image is-48x48 container">
-                                    <%= link_to reservation.room.user do %>
-                                        <%= image_tag  avatar_url(reservation.room.user), class: "is-rounded" %>
+                                    <%= link_to reservation.user do %>
+                                        <%= image_tag  avatar_url(reservation.user), class: "is-rounded" %>
                                     <% end %>
                                 </figure>
+                            </div>
+                            <div class="is-2">
+                                <%#= render  partial: "reviews/host_form", locals: {reservation: reservation} %>
+                                <%= render  partial: "reviews/host_form", locals: {reservation: reservation} if !user_has_reviewed(reservation) && reservation.is_finished %>
                             </div>
                         </div>
                     <% end %>

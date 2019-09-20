@@ -1,0 +1,29 @@
+<button class="button is-link showGuestForm" onclick="showModal( <%= reservation.id %> )" >Review Host</button>
+
+<div class="modal" id="<%= reservation.id %>">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Review your host</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+       <%= render partial: "reviews/review_form", locals: {reservation: reservation} %>
+      </section>
+    <div class="modal-card-foot">
+      <button class="button delete">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showModal(id) {
+    $(`#${id}`).addClass("is-active");
+    console.log($(`#${id}`));
+  }
+
+
+    $(".delete").click(function() {
+        $("#<%= reservation.id %>").removeClass("is-active");
+    });
+</script>

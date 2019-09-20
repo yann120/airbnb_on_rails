@@ -1,0 +1,8 @@
+ <%= form_for reservation.reviews.new do |f| %>
+    <div class="input has-text-centered">
+        <%= f.text_field :score %>
+    </div>
+    <%= f.text_area :comment, rows: 3, class:"text-area", placeholder: "Leave your review here", required: true, class:"textarea"  %>
+    <%= f.hidden_field :reservation_id, value: reservation.id %>
+    <%= f.submit "Add review", class: "button is-link" %>
+ <% end %>
