@@ -1,8 +1,17 @@
  <%= form_for reservation.reviews.new do |f| %>
-    <div class="input has-text-centered">
-        <%= f.text_field :score %>
-    </div>
+    <%= f.hidden_field :score %>
+    <div id="stars" class="has-text-centered is-size-5" style="height: 3em;"></div>
     <%= f.text_area :comment, rows: 3, class:"text-area", placeholder: "Leave your review here", required: true, class:"textarea"  %>
     <%= f.hidden_field :reservation_id, value: reservation.id %>
     <%= f.submit "Add review", class: "button is-link" %>
  <% end %>
+
+ <script>
+    $('#stars').stars({
+        stars: 5,
+        text: ['Very bad', 'Bad', 'Good', 'Great', 'Excellent'],
+        click: function(index) {
+            $("#review_score").val(index);
+        }
+    });
+ </script>
