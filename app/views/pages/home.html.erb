@@ -1,2 +1,36 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+    <% @rooms.each do |room| %>
+  <div class="columns flex-center">
+  <div class='column is-two-thirds'>
+      <div class="card">
+      <%= link_to room_path(room) do %>
+          <div class="card-image">
+            <figure class="image is-4by3 ">
+              <%= image_tag  url_for(room.room_pictures.first) %>
+            </figure>
+          </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag  avatar_url(room.user), class: 'is-rounded' %>
+              </figure>
+            </div>
+
+            <div class="media-content">
+              <p class="is-4"><%= room.user.fullname %></p>
+              <%= review_stars_with_room(room) %>
+            </div>
+          </div>
+
+          <div class="content title is-3">
+            <%= room.listing_name %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+      <br>
+    <% end %>
+</div>

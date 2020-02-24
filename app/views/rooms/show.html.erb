@@ -12,7 +12,7 @@
         <div class="hero-head"></div>
         <div class="hero-body"></div>
         <div class="hero-foot"></div>
-    </section> 
+    </section>
     <!-- End Hero Carousel -->
     <br><br>
     <div class="columns is-centered">
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <hr>            
+            <hr>
 
             <nav class="level">
             <div class="level-item has-text-centered">
@@ -45,18 +45,18 @@
             <div class="level-item has-text-centered">
                 <div>
                 <p class="title"><span class="icon has-text-primary"><i class="fa fa-user-circle"></i></span></p>
-                <p class="heading has-text-primary has-text-weight-semibold"><%= pluralize(@room.accommodate, 'Guest') %></p>                
+                <p class="heading has-text-primary has-text-weight-semibold"><%= pluralize(@room.accommodate, 'Guest') %></p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
                 <div>
-                <p class="title"><span class="icon has-text-primary"><i class="fa fa-bed"></i></span></p>                
+                <p class="title"><span class="icon has-text-primary"><i class="fa fa-bed"></i></span></p>
                 <p class="heading has-text-primary has-text-weight-semibold"><%= pluralize(@room.bed_room, 'Bedroom') %></p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
                 <div>
-                <p class="title"><span class="icon has-text-primary"><i class="fa fa-bath"></i></span></p>                
+                <p class="title"><span class="icon has-text-primary"><i class="fa fa-bath"></i></span></p>
                 <p class="heading has-text-primary has-text-weight-semibold"><%= pluralize(@room.bath_room, 'Bathroom') %></p>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                         <div class="card">
                         <div class="card-image">
                             <figure class="image is-4by3">
-                                <%= image_tag  url_for(room.room_pictures.first) %>                        
+                                <%= image_tag  url_for(room.room_pictures.first) %>
                             </figure>
                         </div>
                         <div class="card-content">
