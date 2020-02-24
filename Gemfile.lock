@@ -53,12 +53,10 @@ GEM
       faraday (~> 0.9)
       faraday_middleware (~> 0.10)
       nokogiri (~> 1.6)
-    azure-storage-blob (1.1.0)
-      azure-core (~> 0.1.13)
-      azure-storage-common (~> 1.0)
-      nokogiri (~> 1.6, >= 1.6.8)
-    azure-storage-common (1.1.0)
-      azure-core (~> 0.1.13)
+    azure-storage (0.15.0.preview)
+      azure-core (~> 0.1)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
       nokogiri (~> 1.6, >= 1.6.8)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -259,7 +257,7 @@ PLATFORMS
 
 DEPENDENCIES
   activestorage-validator
-  azure-storage-blob
+  azure-storage
   bootsnap (>= 1.1.0)
   bulma-rails (~> 0.7.5)
   byebug

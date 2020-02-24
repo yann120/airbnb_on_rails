@@ -84,10 +84,12 @@ gem 'jquery-ui-rails'
 gem "font-awesome-rails"
 
 # Azure cloud storage
-gem "azure-storage-blob", require: false
+gem 'azure-storage'
+# gem "azure-storage-blob", require: false
 
 # Validations of active storage
 gem 'activestorage-validator'
 
 # Geocoder
 gem 'geocoder'
+
