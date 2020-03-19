@@ -1,24 +1,7 @@
-# README
+# Airbnb on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Recreate Airbnb to practice and level up on Rails
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* A user can create a listing, upload pictures of the room with AWS
+* A user can book a room within the availabilities of the listing
+* A user can check his bookings and get a notification if there is new bookings
